@@ -1,0 +1,14 @@
+﻿<form>
+    <input type="text" ng-model="person.firstname"/>
+    <input type="text" ng-model="person.lastname"/>
+    <input type="text" ng-model="person.identityno"/>
+    <select ng-model="person.state">
+        <option ng-repeat="item in states" value="{{item}}">{{item}}</option>
+    </select>
+    <select ng-model="person.city">
+        <option ng-repeat="item in cities" value="{{item}}">{{item}}</option>
+    </select>
+    <button type="button" ng-click="savePerson()">Save</button>
+</form>
+
+{{person|json}}

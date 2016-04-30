@@ -1,0 +1,17 @@
+﻿<table>
+    <tr>
+        <td>first name</td>
+        <td>last name</td>
+        <td>identity number</td>
+        <td>state</td>
+        <td>city</td>
+    </tr>
+    <tr ng-repeat="person in people">
+        <td>{{person.firstname}}</td>
+        <td>{{person.lastname}}</td>
+        <td>{{person.identityno}}</td>
+        <td>{{person.state}}</td>
+        <td>{{person.city}}</td>
+        <td><a href="#/edit/{{$index}}">edit</a></td>
+    </tr>
+</table>

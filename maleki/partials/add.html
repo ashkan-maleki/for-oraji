@@ -1,0 +1,31 @@
+﻿<form name="personform" novalidate>
+    <input type="text" ng-model="person.firstname" name="firstname" required/>
+    <div ng-show="personform.$submitted || personform.firstname.$touched">
+        <div ng-show="personform.firstname.$error.required">Tell us your first name.</div>
+    </div>
+
+    <input type="text" ng-model="person.lastname" name="lastname" required />
+    <div ng-show="personform.$submitted || personform.lastname.$touched">
+        <div ng-show="personform.lastname.$error.required">Tell us your last name.</div>
+    </div>
+
+    <div my-identity></div>
+
+    <select ng-model="person.state" name="state" required>
+        <option ng-repeat="item in states" value="{{item}}">{{item}}</option>
+    </select>
+    <div ng-show="personform.$submitted || personform.state.$touched">
+        <div ng-show="personform.state.$error.required">Tell us your state.</div>
+    </div>
+
+    <select ng-model="person.city" name="city" required>
+        <option ng-repeat="item in cities" value="{{item}}">{{item}}</option>
+    </select>
+    <div ng-show="personform.$submitted || personform.city.$touched">
+        <div ng-show="personform.city.$error.required">Tell us your city.</div>
+    </div>
+
+    <button type="submit" ng-click="savePerson()">Save</button>
+</form>
+
+{{person | json}}
