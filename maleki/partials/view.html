@@ -1,10 +1,15 @@
-﻿<table>
+﻿
+<p>
+    <a class="btn btn-primary" href="#/add">New Person</a>
+</p>
+<table class="table">
     <tr>
-        <td>first name</td>
-        <td>last name</td>
-        <td>identity number</td>
-        <td>state</td>
-        <td>city</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Identity Number</td>
+        <td>State</td>
+        <td>City</td>
+        <td></td>
     </tr>
     <tr ng-repeat="person in people">
         <td>{{person.firstname}}</td>
@@ -12,6 +17,9 @@
         <td>{{person.identityno}}</td>
         <td>{{person.state}}</td>
         <td>{{person.city}}</td>
-        <td><a href="#/edit/{{$index}}">edit</a></td>
+        <td>
+            <a href="#/edit/{{$index}}" class="btn btn-default btn-sm">Edit</a>
+            <button type="submit" ng-click="deletePerson($index)" href="#/delete/{{$index}}" class="btn btn-danger btn-sm">Delete</button>
+        </td>
     </tr>
 </table>

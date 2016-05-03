@@ -19,7 +19,7 @@
             });
 
             $scope.states = [
-                'qom', 'tehran'
+                'Qom', 'Tehran'
             ];
 
             $scope.cities = [];
@@ -28,10 +28,10 @@
                 if (newValue !== oldValue) {
                     $scope.person.city = "";
                 }
-                if (newValue === "qom") {
-                    $scope.cities = ['qom', 'kahak'];
+                if (newValue === "Qom") {
+                    $scope.cities = ['Qom', 'Kahak'];
                 } else {
-                    $scope.cities = ['tehran', 'rey'];
+                    $scope.cities = ['Tehran', 'Rey'];
                 }
 
             });
@@ -46,57 +46,42 @@
         }
     ])
 .controller('ViewController', ['$scope', 'personService', function ($scope, personService) {
-    function Person(args) {
-        this.firstname = args.firstname;
-        this.lastname = args.lastname;
-        this.identityno = args.identityno;
-        this.state = args.state;
-        this.city = args.city;
-    }
-    var person1 = new Person(
-            {
-                firstname: 'ali',
-                lastname: 'maleki',
-                identityno: '12345',
-                state: 'qom',
-                city: 'kahak'
-            });
-    personService.addPerson(person1);
-
-    var p1 = new Person({
-            firstname: 'john',
-            lastname: 'due',
-            identityno: '12346',
-            state: 'tehran',
-            city: 'tehran'
-        });
-        personService.addPerson(p1);
-
     $scope.people = personService.getPeople();
+
+    $scope.deletePerson = function (id) {
+        personService.deletePerson(id);
+        // $scope.people = personService.getPeople();
+    }
 }])
 .controller('EditController', ['$scope', 'personService', '$routeParams', '$location',
     function ($scope, personService, $routeParams, $location) {
-    var id = $routeParams.id;
-    $scope.person = personService.getPerson(id);
+        var id = $routeParams.id;
+        $scope.person = personService.getPerson(id);
 
-    $scope.states = [
-                'qom', 'tehran'
-    ];
+        $scope.states = [
+                    'Qom', 'Tehran'
+        ];
 
-    $scope.$watch('person.state', function (newValue, oldValue) {
-        if (newValue !== oldValue) {
-            $scope.person.city = "";
+        $scope.$watch('person.state', function (newValue, oldValue) {
+            if (newValue !== oldValue) {
+                $scope.person.city = "";
+            }
+            if (newValue === "Qom") {
+                $scope.cities = ['Qom', 'Kahak'];
+            } else {
+                $scope.cities = ['Tehran', 'Rey'];
+            }
+        });
+
+        $scope.savePerson = function () {
+            //personService.addPerson($scope.person);
+            //$scope.people = personService.getPeople();
+            $location.path('/view');
         }
-        if (newValue === "qom") {
-            $scope.cities = ['qom', 'kahak'];
-        } else {
-            $scope.cities = ['tehran', 'rey'];
-        }
-    });
+    }])
+    .controller('DeleteController', ['$scope', 'personService', '$routeParams', '$location',
+        function ($scope, personService, $routeParams, $location) {
+            var id = $routeParams.id;
 
-    $scope.savePerson = function () {
-        //personService.addPerson($scope.person);
-        //$scope.people = personService.getPeople();
-        $location.path('/view');
-    }
-    }]);
+
+        }]);
